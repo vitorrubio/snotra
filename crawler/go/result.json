@@ -1,0 +1,210 @@
+[
+    {
+        "file": "links.txt",
+        "url": "https://uol.com.br"
+    },
+    {
+        "file": "links.txt",
+        "url": "http://xpto.com"
+    },
+    {
+        "file": "links2.txt",
+        "url": "http://yiu.com.br"
+    },
+    {
+        "file": "links2.txt",
+        "url": "https://google.com"
+    },
+    {
+        "file": "links2.txt",
+        "url": "https://teste.gg"
+    },
+    {
+        "file": "links3.txt",
+        "url": "w3.test.com/test"
+    },
+    {
+        "file": "links3.txt",
+        "url": "www.testpage.com"
+    },
+    {
+        "file": "links3.txt",
+        "url": "desktop.test.com"
+    },
+    {
+        "file": "links3.txt",
+        "url": "https://stackoverflow.com/questions/60619430/cant-get-newest-data-from-dao-unless-restart-the-app"
+    },
+    {
+        "file": "links3.txt",
+        "url": "https://stackoverflow.com/questions/6038061/regular-expression-to-find-urls-within-a-string"
+    },
+    {
+        "file": "links3.txt",
+        "url": "http://stackoverflow.gg"
+    },
+    {
+        "file": "links4.txt",
+        "url": "https://www.facebook.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "https://app-1.number123.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://facebook.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "ftp://facebook.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "unitedkingdomurl.co.uk"
+    },
+    {
+        "file": "links4.txt",
+        "url": "this.is.a.url.com/its/still=going?wow"
+    },
+    {
+        "file": "links4.txt",
+        "url": "shop.facebook.org"
+    },
+    {
+        "file": "links4.txt",
+        "url": "app.number123.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "app1.number123.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "app-1.numbEr123.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "app.dashes-dash.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "www.facebook.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "facebook.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "fb.com/hello_123"
+    },
+    {
+        "file": "links4.txt",
+        "url": "fb.com/hel-lo"
+    },
+    {
+        "file": "links4.txt",
+        "url": "fb.com/hello/goodbye"
+    },
+    {
+        "file": "links4.txt",
+        "url": "fb.com/hello/goodbye?okay"
+    },
+    {
+        "file": "links4.txt",
+        "url": "fb.com/hello/goodbye?okay=alright"
+    },
+    {
+        "file": "links4.txt",
+        "url": "www.google.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://yahoo.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "https://www.google.com.tr/admin/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "https://google.com.tr/test/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://google.com/test/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "ftp://google.com/test/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "www.google.com.tr/test/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "www.google.com/test/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "drive.google.com/test/subPage?qs1=sss1\u0026qs2=sss2\u0026qs3=sss3#Services"
+    },
+    {
+        "file": "links4.txt",
+        "url": "https://www.example.pl"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://www.example.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "www.example.pl"
+    },
+    {
+        "file": "links4.txt",
+        "url": "example.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://blog.example.com"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://www.example.com/product"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://www.example.com/products?id=1\u0026page=2"
+    },
+    {
+        "file": "links4.txt",
+        "url": "http://www.example.com#up"
+    },
+    {
+        "file": "links4.txt",
+        "url": "shop.facebook.org/derf.html"
+    },
+    {
+        "file": "subdir1\\linksubdir1-1.txt",
+        "url": "https://uol.com"
+    },
+    {
+        "file": "subdir1\\linksubdir1-1.txt",
+        "url": "http://xpto.com.br"
+    },
+    {
+        "file": "subdir2\\linksubdir2-1.txt",
+        "url": "http://yiu.com"
+    },
+    {
+        "file": "subdir2\\linksubdir2-1.txt",
+        "url": "https://google.com.br/about"
+    },
+    {
+        "file": "subdir2\\linksubdir2-1.txt",
+        "url": "https://teste.gg/?teste=123"
+    }
+]
