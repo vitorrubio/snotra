@@ -59,6 +59,10 @@ func main() {
 	fmt.Println("Links found:", len(links))
 	fmt.Println("Results saved to result.json")
 
+	//postData(jsonData)
+}
+
+func postData(jsonData []byte) {
 	url := "https://example.com/api/endpoint" // Replace with your API endpoint
 
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(jsonData))

@@ -186,25 +186,5 @@
     {
         "file": "links4.txt",
         "url": "shop.facebook.org/derf.html"
-    },
-    {
-        "file": "subdir1\\linksubdir1-1.txt",
-        "url": "https://uol.com"
-    },
-    {
-        "file": "subdir1\\linksubdir1-1.txt",
-        "url": "http://xpto.com.br"
-    },
-    {
-        "file": "subdir2\\linksubdir2-1.txt",
-        "url": "http://yiu.com"
-    },
-    {
-        "file": "subdir2\\linksubdir2-1.txt",
-        "url": "https://google.com.br/about"
-    },
-    {
-        "file": "subdir2\\linksubdir2-1.txt",
-        "url": "https://teste.gg/?teste=123"
     }
 ]
