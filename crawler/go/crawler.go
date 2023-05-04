@@ -15,7 +15,7 @@ import (
 
 type Link struct {
 	File string `json:"file"`
-	URL  string `json:"url"`
+	URL  []string `json:"url"`
 }
 
 func main() {
