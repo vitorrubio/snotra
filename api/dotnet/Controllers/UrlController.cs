@@ -1,3 +1,4 @@
+using dotnet.Entidades;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet.Controllers;
@@ -48,6 +49,7 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
         return $"exbindo {qtde} resultados da página {pag}";
     }
 
+    ///informações do metodo
     [HttpGet("categoria/{cat}/produtos")]
     public string GetProdutos(string cat)
     {

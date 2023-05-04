@@ -1,4 +1,16 @@
+using dotnet.Dados;
+using Microsoft.EntityFrameworkCore;
+
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+    .AddJsonFile("appsettings.json")
+    .Build();
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<Contexto>(options =>
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 
