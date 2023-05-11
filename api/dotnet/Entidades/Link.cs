@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace dotnet.Entidades
 {
@@ -18,6 +19,16 @@ namespace dotnet.Entidades
 
         [Key]
         public int Id {get; set;}
+
+        // [ForeignKey("NotaId")]
+        // [JsonIgnore]
+        // public Nota Nota {get; set;}
+
+        [ForeignKey("NotaId")]
+        [Required]
+        public int NotaId {get; set;}
+
+
 
 
     }

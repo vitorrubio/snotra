@@ -1,5 +1,7 @@
+using dotnet.Dados;
 using dotnet.Entidades;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace dotnet.Controllers;
 
@@ -7,59 +9,92 @@ namespace dotnet.Controllers;
 [Route("api/[controller]")]
 public class UrlController : ControllerBase //tem que ser filho de ControllerBase [o nome tem que terminar com controller]
 {
+    private readonly Contexto _contexto;
+
+    public UrlController(Contexto ctx)
+    {
+        _contexto = ctx;
+    }
 
     [HttpGet]
-    //public IActionResult Get()
-    public string Get()
-    //public ActionResult<string> Get()
+    public ActionResult<List<Nota>> Get()
     {
-        //return Ok("Tudo bem"); //200 ok
-        //return BadRequest("Tudo mal"); //400 bad request
-        //return NotFound("Não encontrado"); //404
-        //return StatusCode(425, "Mutcho Esquisito");
-
-
-        return "Tudo bem mesmo";
-
-        /*
-        return StatusCode(505, new   {
-                            Mensagem="not found sei lá procura no ipiranga", 
-                            Saldo = "100" 
-                        });
-                        */
-    }
-
-
-    [HttpGet("hello")]
-    public string Hello()
-    {
-        return "Hello World";
-    }
-
-    [HttpGet("{id}")]
-    public string Get(string id)
-    {
-        return $"O id procurado foi {id}";
+        return Ok(_contexto
+            .Notas
+            .Include(x => x.Urls)
+            .ToList());
     }
 
 
     [HttpGet("{pag:int}/{qtde:int}")]
-    public string Get(int pag, int qtde)
+    public ActionResult<List<Nota>> Get(int pag, int qtde)
     {
-        return $"exbindo {qtde} resultados da página {pag}";
+        if (pag < 1 || qtde < 1)
+        {
+            return BadRequest();
+        }
+
+        return Ok(_contexto
+            .Notas
+            .Include(x => x.Urls)
+            .OrderBy(x => x.Caminho)
+            .Skip((pag - 1) * qtde)
+            .Take(qtde)
+            .ToList());
     }
 
-    ///informações do metodo
-    [HttpGet("categoria/{cat}/produtos")]
-    public string GetProdutos(string cat)
+
+
+    [HttpGet("{id:int}")]
+    public ActionResult<Nota> Get(int id)
     {
-        return $"exbindo os produtos da categoria {cat}";
+        return Ok(_contexto
+            .Notas
+            .Include(x => x.Urls)
+            .FirstOrDefault(x => x.Id == id));
     }
+
+
+    [HttpPatch("{id:int}")]
+    public ActionResult<Nota> Patch(int id, Nota nota)
+    {
+        var original = _contexto
+            .Notas
+            .Include(x => x.Urls)
+            .FirstOrDefault(x => x.Id == id);
+
+        if (original == null)
+        {
+            return NotFound();
+        }
+
+        original.Caminho = nota.Caminho;
+        original.Texto = nota.Texto;
+        
+        original.Urls.Clear();
+        original.Urls.AddRange(nota.Urls);
+
+        _contexto.Entry(original).State = EntityState.Modified;
+        _contexto.SaveChanges();
+
+        return Ok(original);
+
+    }
+
+
 
     [HttpPost]
     public IActionResult Post(Nota nota)
     {
-        nota.Id = DateTime.Now.Second;
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        _contexto.Notas.Add(nota);
+
+        _contexto.SaveChanges();
+
         return Ok(nota);
     }
 }
