@@ -20,9 +20,9 @@ namespace dotnet.Entidades
         [Key]
         public int Id {get; set;}
 
-        // [ForeignKey("NotaId")]
-        // [JsonIgnore]
-        // public Nota Nota {get; set;}
+        [ForeignKey("NotaId")]
+        [JsonIgnore]
+        public Nota? Nota {get; set;}
 
         [ForeignKey("NotaId")]
         [Required]
