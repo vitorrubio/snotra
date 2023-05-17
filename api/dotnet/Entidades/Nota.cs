@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace dotnet.Entidades
+namespace SnotraApiDotNet.Entidades
 {
     public class Nota
     {
@@ -22,7 +22,7 @@ namespace dotnet.Entidades
         public string Texto {get; set;}
 
 
-        public List<Link> Urls {get; set;}
+        public List<Link> Urls {get; }
 
         [Key]
         public int Id {get; set;}

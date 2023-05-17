@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using dotnet.Dados;
+using SnotraApiDotNet.Dados;
 
 #nullable disable
 
-namespace dotnet.Migrations
+namespace SnotraApiDotNet.Migrations
 {
     [DbContext(typeof(Contexto))]
     partial class ContextoModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace dotnet.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("dotnet.Entidades.Link", b =>
+            modelBuilder.Entity("SnotraApiDotNet.Entidades.Link", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace dotnet.Migrations
                     b.ToTable("Link");
                 });
 
-            modelBuilder.Entity("dotnet.Entidades.Nota", b =>
+            modelBuilder.Entity("SnotraApiDotNet.Entidades.Nota", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,9 +69,9 @@ namespace dotnet.Migrations
                     b.ToTable("Notas");
                 });
 
-            modelBuilder.Entity("dotnet.Entidades.Link", b =>
+            modelBuilder.Entity("SnotraApiDotNet.Entidades.Link", b =>
                 {
-                    b.HasOne("dotnet.Entidades.Nota", "Nota")
+                    b.HasOne("SnotraApiDotNet.Entidades.Nota", "Nota")
                         .WithMany("Urls")
                         .HasForeignKey("NotaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -80,7 +80,7 @@ namespace dotnet.Migrations
                     b.Navigation("Nota");
                 });
 
-            modelBuilder.Entity("dotnet.Entidades.Nota", b =>
+            modelBuilder.Entity("SnotraApiDotNet.Entidades.Nota", b =>
                 {
                     b.Navigation("Urls");
                 });

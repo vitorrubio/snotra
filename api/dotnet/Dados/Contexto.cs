@@ -3,14 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using dotnet.Entidades;
+using SnotraApiDotNet.Entidades;
 
-namespace dotnet.Dados
+namespace SnotraApiDotNet.Dados
 {
     public class Contexto : DbContext
     {
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
-        public DbSet<Nota> Notas { get; set; }
+        public DbSet<Nota> Notas => Set<Nota>();
     }
 }

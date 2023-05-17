@@ -1,9 +1,9 @@
-using dotnet.Dados;
-using dotnet.Entidades;
+using SnotraApiDotNet.Dados;
+using SnotraApiDotNet.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace dotnet.Controllers;
+namespace SnotraApiDotNet.Controllers;
 
 [ApiController]  //define uma clase como controller
 [Route("api/[controller]")]

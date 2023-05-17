@@ -1,4 +1,4 @@
-using dotnet.Dados;
+using SnotraApiDotNet.Dados;
 using Microsoft.EntityFrameworkCore;
 
 IConfigurationRoot configuration = new ConfigurationBuilder()

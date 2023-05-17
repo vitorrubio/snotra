@@ -3916,9 +3916,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\dotnet.csproj",
-      "projectName": "dotnet",
-      "projectPath": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\dotnet.csproj",
+      "projectUniqueName": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\SnotraApiDotNet.csproj",
+      "projectName": "SnotraApiDotNet",
+      "projectPath": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\SnotraApiDotNet.csproj",
       "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\obj\\",
       "projectStyle": "PackageReference",
@@ -3991,7 +3991,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

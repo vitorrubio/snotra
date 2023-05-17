@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace dotnet.Migrations
+namespace SnotraApiDotNet.Migrations
 {
     /// <inheritdoc />
     public partial class MigrationInicial : Migration

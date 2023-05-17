@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "QJzUwGArlFNgEaO8S/IcD5jJlSi+TGzhaKyVeQTzYKM=",
-  "Source": "dotnet",
-  "BasePath": "_content/dotnet",
+  "Hash": "8eBvdkaEFeueKo5Jb4XG2Ce/Us602zXyjlbm5aMRTb4=",
+  "Source": "SnotraApiDotNet",
+  "BasePath": "_content/SnotraApiDotNet",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

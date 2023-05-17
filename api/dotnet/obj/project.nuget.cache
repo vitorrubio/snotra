@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1Y5ORE03SnH4EfhpE6qkcLjQi/0wCkgH0fYB5JRByXXrKHC6S8Wej5oScZwcihX69MCggRcagB4dkp7mGcsysg==",
+  "dgSpecHash": "ZVM1YKxI4YHrvL6bTvlbLEWVyYpQ3Q3bum0ve/k1v9unTSPe5xhLhyugWHpPvy5KFF0jVwUYerFrU9UizFQMkg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\dotnet.csproj",
+  "projectFilePath": "C:\\Users\\vitor\\source\\repos\\_github\\snotra\\snotra\\api\\dotnet\\SnotraApiDotNet.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vitor\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\vitor\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
