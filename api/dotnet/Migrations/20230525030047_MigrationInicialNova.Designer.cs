@@ -8,11 +8,11 @@ using SnotraApiDotNet.Dados;
 
 #nullable disable
 
-namespace SnotraApiDotNet.Dados.Migrations
+namespace SnotraApiDotNet.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230525013346_TesteMudancaPastaMigrations")]
-    partial class TesteMudancaPastaMigrations
+    [Migration("20230525030047_MigrationInicialNova")]
+    partial class MigrationInicialNova
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,8 +64,7 @@ namespace SnotraApiDotNet.Dados.Migrations
 
                     b.Property<string>("Texto")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Texto");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

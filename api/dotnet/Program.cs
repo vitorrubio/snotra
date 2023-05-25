@@ -10,8 +10,8 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<Contexto>(options =>
-    //options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-    options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+    //options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
 
     //connstring original no config json
     ////"DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SnotraDb;Trusted_Connection=True;MultipleActiveResultSets=true"

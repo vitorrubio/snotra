@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace SnotraApiDotNet.Dados.Migrations
+namespace SnotraApiDotNet.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationInicial : Migration
+    public partial class MigrationInicialNova : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,8 +16,8 @@ namespace SnotraApiDotNet.Dados.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    C_CAMINHO = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Texto = table.Column<string>(type: "TEXT", nullable: false)
+                    Caminho = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace SnotraApiDotNet.Dados.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(type: "varchar(2048)", maxLength: 2048, nullable: false),
-                    NotaId = table.Column<int>(type: "int", nullable: true)
+                    NotaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,7 +40,8 @@ namespace SnotraApiDotNet.Dados.Migrations
                         name: "FK_Link_Notas_NotaId",
                         column: x => x.NotaId,
                         principalTable: "Notas",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
