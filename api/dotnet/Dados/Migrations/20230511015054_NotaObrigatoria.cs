@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SnotraApiDotNet.Migrations
+namespace SnotraApiDotNet.Dados.Migrations
 {
     /// <inheritdoc />
     public partial class NotaObrigatoria : Migration

@@ -2,12 +2,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace SnotraApiDotNet.Entidades
+namespace SnotraApiDotNet.Dados.Modelo
 {
-    public class Link
+    
+    [Table("Link")]
+    public class LinkModelo
     {
 
-        public Link()
+        public LinkModelo()
         {
             Url = "";
         }
@@ -22,7 +24,7 @@ namespace SnotraApiDotNet.Entidades
 
         [ForeignKey("NotaId")]
         [JsonIgnore]
-        public Nota? Nota {get; set;}
+        public NotaModelo? Nota {get; set;}
 
         [ForeignKey("NotaId")]
         [Required]

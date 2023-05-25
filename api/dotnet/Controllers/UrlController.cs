@@ -1,7 +1,8 @@
 using SnotraApiDotNet.Dados;
-using SnotraApiDotNet.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SnotraApiDotNet.Dados.Modelo;
+using SnotraApiDotNet.Dominio.Entidades;
 
 namespace SnotraApiDotNet.Controllers;
 
@@ -17,17 +18,20 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
     }
 
     [HttpGet]
-    public ActionResult<List<Nota>> Get()
+    public ActionResult<List<NotaEntidade>> Get()
     {
         return Ok(_contexto
             .Notas
             .Include(x => x.Urls)
+            .ToList()
+            
+            .Select(n => n.ToNotaEntidade())
             .ToList());
     }
 
 
     [HttpGet("{pag:int}/{qtde:int}")]
-    public ActionResult<List<Nota>> Get(int pag, int qtde)
+    public ActionResult<List<NotaEntidade>> Get(int pag, int qtde)
     {
         if (pag < 1 || qtde < 1)
         {
@@ -40,23 +44,32 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
             .OrderBy(x => x.Caminho)
             .Skip((pag - 1) * qtde)
             .Take(qtde)
+            .ToList()
+            
+            .Select(n => n.ToNotaEntidade())
             .ToList());
     }
 
 
 
     [HttpGet("{id:int}")]
-    public ActionResult<Nota> Get(int id)
+    public ActionResult<NotaEntidade> Get(int id)
     {
-        return Ok(_contexto
+        var nota = _contexto
             .Notas
             .Include(x => x.Urls)
-            .FirstOrDefault(x => x.Id == id));
+            .FirstOrDefault(x => x.Id == id)?.ToNotaEntidade();
+
+        if(nota == null)
+        {
+            return NotFound();
+        }
+        return Ok(nota);
     }
 
 
     [HttpPatch("{id:int}")]
-    public ActionResult<Nota> Patch(int id, Nota nota)
+    public ActionResult<NotaEntidade> Patch(int id, ModificarNotaRequest nota)
     {
         var original = _contexto
             .Notas
@@ -67,34 +80,67 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
         {
             return NotFound();
         }
+        
 
         original.Caminho = nota.Caminho;
         original.Texto = nota.Texto;
         
         original.Urls.Clear();
-        original.Urls.AddRange(nota.Urls);
+        original.Urls.AddRange(nota.Urls.Select(x => new LinkModelo{
+            Url = x
+        }));
 
         _contexto.Entry(original).State = EntityState.Modified;
         _contexto.SaveChanges();
 
-        return Ok(original);
+        return Ok(original.ToNotaEntidade());
 
     }
 
 
 
     [HttpPost]
-    public IActionResult Post(Nota nota)
+    public IActionResult Post(CriarNotaRequest nota)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest();
         }
 
-        _contexto.Notas.Add(nota);
+        var notaModelo  = new NotaModelo{
+            Caminho = nota.Caminho,
+            Texto = nota.Texto,
+            
+        };
+
+        notaModelo.Urls.AddRange(nota.Urls.Select(x => new LinkModelo{
+            Url = x
+        }));
+
+        _contexto.Notas.Add(notaModelo);
 
         _contexto.SaveChanges();
 
-        return Ok(nota);
+        return Ok(notaModelo.ToNotaEntidade());
+    }
+
+
+    [HttpDelete("{id:int}")]
+    public IActionResult Delete(int id)
+    {
+        var nota = _contexto
+            .Notas
+            .Include(x => x.Urls)
+            .FirstOrDefault(x => x.Id == id);
+
+        if(nota == null)
+        {
+            return NotFound();
+        }
+
+        _contexto.Notas.Remove(nota);
+        _contexto.SaveChanges();
+
+        return NoContent();
     }
 }

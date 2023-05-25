@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SnotraApiDotNet.Migrations
+namespace SnotraApiDotNet.Dados.Migrations
 {
     /// <inheritdoc />
     public partial class MigrationInicial : Migration
@@ -17,7 +17,7 @@ namespace SnotraApiDotNet.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     C_CAMINHO = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Texto = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
