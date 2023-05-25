@@ -99,7 +99,7 @@ func getLinks(filename string) []string {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
-		re := regexp.MustCompile(`(?:^|\s)((http|https):\/\/(localhost)(:\d+)?(\/[\w.-]*)*(\?[\w\.\-_\[\]=&]*)?)(?:$|\s)|(((http(s)?)|ftp):\/\/)?[\w.-]+\.[a-zA-Z]{2,}(\/[\w.-]*)*(\?[\w\.\-_\[\]=&#]*)?(#[\w\.\-_\[\]=&#]*)?`)
+		re := regexp.MustCompile(`(?:^|\s)((http|https|ftp):\/\/(localhost)(:\d+)?(\/[\w.-]*)*(\?[\w\.\-_\[\]=&]*)?)(?:$|\s)|(((http(s)?)|ftp):\/\/)?[\w.-]+\.[a-zA-Z]{2,}(\/[\w.-]*)*(\?[\w\.\-_\[\]=&#]*)?(#[\w\.\-_\[\]=&#]*)?`)
 		matches := re.FindAllString(line, -1)
 		for _, match := range matches {
 			links = append(links, match)
