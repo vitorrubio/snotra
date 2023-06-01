@@ -8,5 +8,6 @@ namespace SnotraApiDotNet.Dados
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
         public DbSet<NotaModelo> Notas => Set<NotaModelo>();
+        public DbSet<LinkModelo> Links => Set<LinkModelo>();
     }
 }

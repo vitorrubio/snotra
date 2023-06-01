@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using SnotraApiDotNet.Dominio.Entidades;
 
 namespace SnotraApiDotNet.Dados.Modelo
@@ -24,7 +26,7 @@ namespace SnotraApiDotNet.Dados.Modelo
         public string Texto {get; set;}
 
 
-        public List<LinkModelo> Urls {get; set;}
+        public IList<LinkModelo> Urls {get; set;}
 
         [Key]
         public int Id {get; set;}
@@ -38,7 +40,7 @@ namespace SnotraApiDotNet.Dados.Modelo
                 Id = this.Id,
             };
 
-            result.Urls.AddRange(this.Urls.Select(x => x.Url).ToList());
+            result.Urls.AddRange(this.Urls.Select(x => x.Url).Distinct().ToList());
 
             return result;
         }

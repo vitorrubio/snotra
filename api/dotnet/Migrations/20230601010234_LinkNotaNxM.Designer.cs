@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnotraApiDotNet.Dados;
 
@@ -10,9 +11,11 @@ using SnotraApiDotNet.Dados;
 namespace SnotraApiDotNet.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20230601010234_LinkNotaNxM")]
+    partial class LinkNotaNxM
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,9 +54,6 @@ namespace SnotraApiDotNet.Migrations
                         .HasColumnName("Url");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Url")
-                        .IsUnique();
 
                     b.ToTable("Link");
                 });

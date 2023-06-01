@@ -3,16 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SnotraApiDotNet.Dados.Modelo;
 using SnotraApiDotNet.Dominio.Entidades;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SnotraApiDotNet.Controllers;
 
 [ApiController]  //define uma clase como controller
 [Route("api/[controller]")]
-public class UrlController : ControllerBase //tem que ser filho de ControllerBase [o nome tem que terminar com controller]
+public class NotaController : ControllerBase //tem que ser filho de ControllerBase [o nome tem que terminar com controller]
 {
     private readonly Contexto _contexto;
 
-    public UrlController(Contexto ctx)
+    public NotaController(Contexto ctx)
     {
         _contexto = ctx;
     }
@@ -85,10 +87,47 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
         original.Caminho = nota.Caminho;
         original.Texto = nota.Texto;
         
-        original.Urls.Clear();
-        original.Urls.AddRange(nota.Urls.Select(x => new LinkModelo{
-            Url = x
-        }));
+        
+        // original.Urls.Clear();
+        // foreach(var url in nota.Urls)
+        // {
+        //     var existente = _contexto.Links.FirstOrDefault(x => x.Url == url);
+        //     if(existente != null)
+        //     {
+        //        original.Urls.Add(existente); 
+        //     }
+        //     else
+        //     {
+        //         original.Urls.Add(new LinkModelo{
+        //             Url = url
+        //         });
+        //     }
+        // }
+
+
+        var limpar = original.Urls.Where(x => !nota.Urls.Any(y => y == x.Url)).ToList();
+        var acrescentar = nota.Urls.Where(x => !original.Urls.Any(y => y.Url == x)).ToList();
+        
+        foreach(var l in limpar)
+        {
+            original.Urls.Remove(l);
+        }
+
+        foreach(var url in acrescentar.Distinct())
+        {
+            var existente = _contexto.Links.FirstOrDefault(x => x.Url == url);
+            if(existente != null)
+            {
+               original.Urls.Add(existente); 
+            }
+            else
+            {
+                original.Urls.Add(new LinkModelo{
+                    Url = url
+                });
+            }
+        }
+
 
         _contexto.Entry(original).State = EntityState.Modified;
         _contexto.SaveChanges();
@@ -113,9 +152,22 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
             
         };
 
-        notaModelo.Urls.AddRange(nota.Urls.Select(x => new LinkModelo{
-            Url = x
-        }));
+
+        foreach(var url in nota.Urls.Distinct())
+        {
+            var existente = _contexto.Links.FirstOrDefault(x => x.Url == url);
+            if(existente != null)
+            {
+               notaModelo.Urls.Add(existente); 
+            }
+            else
+            {
+                notaModelo.Urls.Add(new LinkModelo{
+                    Url = url
+                });
+            }
+
+        }
 
         _contexto.Notas.Add(notaModelo);
 
@@ -143,4 +195,6 @@ public class UrlController : ControllerBase //tem que ser filho de ControllerBas
 
         return NoContent();
     }
+
+
 }
