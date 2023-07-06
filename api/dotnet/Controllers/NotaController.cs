@@ -1,10 +1,10 @@
 using SnotraApiDotNet.Dados;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SnotraApiDotNet.Dados.Modelo;
 using SnotraApiDotNet.Dominio.Entidades;
 using System.Collections.Generic;
 using System.Linq;
+using SnotraApiDotNet.Dominio.Dto;
 
 namespace SnotraApiDotNet.Controllers;
 
@@ -20,20 +20,20 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
     }
 
     [HttpGet]
-    public ActionResult<List<NotaEntidade>> Get()
+    public ActionResult<List<NotaDto>> Get()
     {
         return Ok(_contexto
             .Notas
             .Include(x => x.Urls)
             .ToList()
             
-            .Select(n => n.ToNotaEntidade())
+            .Select(n => n.ToDto())
             .ToList());
     }
 
 
     [HttpGet("{pag:int}/{qtde:int}")]
-    public ActionResult<List<NotaEntidade>> Get(int pag, int qtde)
+    public ActionResult<List<NotaDto>> Get(int pag, int qtde)
     {
         if (pag < 1 || qtde < 1)
         {
@@ -48,19 +48,19 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
             .Take(qtde)
             .ToList()
             
-            .Select(n => n.ToNotaEntidade())
+            .Select(n => n.ToDto())
             .ToList());
     }
 
 
 
     [HttpGet("{id:int}")]
-    public ActionResult<NotaEntidade> Get(int id)
+    public ActionResult<NotaDto> Get(int id)
     {
         var nota = _contexto
             .Notas
             .Include(x => x.Urls)
-            .FirstOrDefault(x => x.Id == id)?.ToNotaEntidade();
+            .FirstOrDefault(x => x.Id == id)?.ToDto();
 
         if(nota == null)
         {
@@ -71,7 +71,7 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
 
 
     [HttpPatch("{id:int}")]
-    public ActionResult<NotaEntidade> Patch(int id, ModificarNotaRequest nota)
+    public ActionResult<NotaDto> Patch(int id, ModificarNotaRequest nota)
     {
         var original = _contexto
             .Notas
@@ -122,7 +122,7 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
             }
             else
             {
-                original.Urls.Add(new LinkModelo{
+                original.Urls.Add(new Link{
                     Url = url
                 });
             }
@@ -132,7 +132,7 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
         _contexto.Entry(original).State = EntityState.Modified;
         _contexto.SaveChanges();
 
-        return Ok(original.ToNotaEntidade());
+        return Ok(original.ToDto());
 
     }
 
@@ -146,7 +146,7 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
             return BadRequest();
         }
 
-        var notaModelo  = new NotaModelo{
+        var notaModelo  = new Nota{
             Caminho = nota.Caminho,
             Texto = nota.Texto,
             
@@ -162,7 +162,7 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
             }
             else
             {
-                notaModelo.Urls.Add(new LinkModelo{
+                notaModelo.Urls.Add(new Link{
                     Url = url
                 });
             }
@@ -173,7 +173,7 @@ public class NotaController : ControllerBase //tem que ser filho de ControllerBa
 
         _contexto.SaveChanges();
 
-        return Ok(notaModelo.ToNotaEntidade());
+        return Ok(notaModelo.ToDto());
     }
 
 

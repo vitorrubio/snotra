@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SnotraApiDotNet.Dados.Modelo;
+using SnotraApiDotNet.Dominio.Entidades;
 
 namespace SnotraApiDotNet.Dados
 {
@@ -7,7 +7,7 @@ namespace SnotraApiDotNet.Dados
     {
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 
-        public DbSet<NotaModelo> Notas => Set<NotaModelo>();
-        public DbSet<LinkModelo> Links => Set<LinkModelo>();
+        public DbSet<Nota> Notas => Set<Nota>();
+        public DbSet<Link> Links => Set<Link>();
     }
 }

@@ -2,19 +2,20 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using SnotraApiDotNet.Dominio.Entidades;
+using SnotraApiDotNet.Dominio.Dto;
 
-namespace SnotraApiDotNet.Dados.Modelo
+
+namespace SnotraApiDotNet.Dominio.Entidades
 {
     [Table("Notas")]
-    public class NotaModelo
+    public class Nota
     {
 
-        public NotaModelo()
+        public Nota()
         {
             Caminho = "";
             Texto = "";
-            Urls = new List<LinkModelo>();
+            Urls = new List<Link>();
         }
 
         
@@ -26,15 +27,15 @@ namespace SnotraApiDotNet.Dados.Modelo
         public string Texto {get; set;}
 
 
-        public IList<LinkModelo> Urls {get; set;}
+        public IList<Link> Urls {get; set;}
 
         [Key]
         public int Id {get; set;}
 
 
-        public NotaEntidade ToNotaEntidade()
+        public NotaDto ToDto()
         {
-            var result = new NotaEntidade{
+            var result = new NotaDto{
                 Caminho = this.Caminho,
                 Texto = this.Texto,
                 Id = this.Id,

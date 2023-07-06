@@ -2,11 +2,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-namespace SnotraApiDotNet.Dominio.Entidades
+namespace SnotraApiDotNet.Dominio.Dto
 {
-    public class NotaEntidade
+    public class NotaDto
     {
-        public NotaEntidade()
+        public NotaDto()
         {
             Caminho = "";
             Texto = "";

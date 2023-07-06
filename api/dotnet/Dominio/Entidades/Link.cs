@@ -3,18 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
-namespace SnotraApiDotNet.Dados.Modelo
+namespace SnotraApiDotNet.Dominio.Entidades
 {
     
     [Table("Link")]
     [Index(nameof(Url), IsUnique = true)]
-    public class LinkModelo
+    public class Link
     {
 
-        public LinkModelo()
+        public Link()
         {
             Url = "";
-            Notas = new List<NotaModelo>();
+            Notas = new List<Nota>();
         }
 
         
@@ -26,7 +26,7 @@ namespace SnotraApiDotNet.Dados.Modelo
         public int Id {get; set;}
 
 
-        public IList<NotaModelo> Notas {get; set;}
+        public IList<Nota> Notas {get; set;}
 
 
     }
