@@ -37,7 +37,7 @@ namespace SnotraApiDotNet.Dados
                                  .Where(
                                      property => property.ClrType == typeof(string))))
             {
-                property.Builder.HasMaxLength(40);
+                property.Builder?.HasMaxLength(40)?.HasColumnType("nvarchar");
             }
         }
     }
