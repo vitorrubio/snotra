@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
@@ -18,6 +20,15 @@ namespace SnotraApiDotNet.Dados
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {
+            
+            // var conventions = configurationBuilder
+            //     .Conventions
+            //     .GetType()
+            //     .GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+            //     .Where(f => f.Name == "_conventionSet")
+            //     .FirstOrDefault()?
+            //     .GetValue(configurationBuilder.Conventions);
+
 
             configurationBuilder.Conventions.Add(_ => new MaxStringLengthConvention());
 
