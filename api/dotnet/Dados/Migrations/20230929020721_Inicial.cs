@@ -5,7 +5,7 @@
 namespace Dados.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,17 +24,33 @@ namespace Dados.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Notas",
+                name: "Lista",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Caminho = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Texto = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
+                    Descricao = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    Comentarios = table.Column<string>(type: "nvarchar(MAX)", maxLength: 40, nullable: true),
+                    Obs = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Notas", x => x.Id);
+                    table.PrimaryKey("PK_Lista", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Nota",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Caminho = table.Column<string>(type: "varchar(260)", maxLength: 260, nullable: false),
+                    Texto = table.Column<string>(type: "nvarchar(MAX)", maxLength: 40, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Nota", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -54,9 +70,9 @@ namespace Dados.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LinkNota_Notas_NotasId",
+                        name: "FK_LinkNota_Nota_NotasId",
                         column: x => x.NotasId,
-                        principalTable: "Notas",
+                        principalTable: "Nota",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -71,6 +87,12 @@ namespace Dados.Migrations
                 name: "IX_LinkNota_UrlsId",
                 table: "LinkNota",
                 column: "UrlsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Lista_Nome",
+                table: "Lista",
+                column: "Nome",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -80,10 +102,13 @@ namespace Dados.Migrations
                 name: "LinkNota");
 
             migrationBuilder.DropTable(
+                name: "Lista");
+
+            migrationBuilder.DropTable(
                 name: "Link");
 
             migrationBuilder.DropTable(
-                name: "Notas");
+                name: "Nota");
         }
     }
 }

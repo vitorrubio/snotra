@@ -11,15 +11,15 @@ using SnotraApiDotNet.Dados;
 namespace Dados.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230831001255_Initial")]
-    partial class Initial
+    [Migration("20230929020721_Inicial")]
+    partial class Inicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -50,8 +50,7 @@ namespace Dados.Migrations
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(2048)
-                        .HasColumnType("varchar(2048)")
-                        .HasColumnName("Url");
+                        .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
@@ -59,6 +58,39 @@ namespace Dados.Migrations
                         .IsUnique();
 
                     b.ToTable("Link");
+                });
+
+            modelBuilder.Entity("SnotraApiDotNet.Dominio.Entidades.Lista", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comentarios")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<string>("Obs")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Nome")
+                        .IsUnique();
+
+                    b.ToTable("Lista");
                 });
 
             modelBuilder.Entity("SnotraApiDotNet.Dominio.Entidades.Nota", b =>
@@ -71,17 +103,17 @@ namespace Dados.Migrations
 
                     b.Property<string>("Caminho")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("Caminho");
+                        .HasMaxLength(260)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Texto")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(MAX)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Notas");
+                    b.ToTable("Nota");
                 });
 
             modelBuilder.Entity("LinkNota", b =>

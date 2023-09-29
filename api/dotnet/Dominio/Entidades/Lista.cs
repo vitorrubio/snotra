@@ -7,6 +7,7 @@ namespace SnotraApiDotNet.Dominio.Entidades
 {
     
 
+    [Table(nameof(Lista))]
     [Index(nameof(Nome), IsUnique = true)]
     public class Lista
     {
@@ -20,8 +21,17 @@ namespace SnotraApiDotNet.Dominio.Entidades
         public int Id {get; set;}
 
 
+        [MaxLength(250)]
+        [Column(TypeName = "nvarchar")]        
         public string Nome {get; set;}
 
+        [MaxLength(500)]
+        [Column(TypeName = "nvarchar")]
+        public string? Descricao {get; set;}
 
+        [Column(TypeName = "nvarchar(MAX)")]
+        public string? Comentarios {get; set;}
+
+        public string? Obs {get; set;}
     }
 }

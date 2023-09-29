@@ -19,11 +19,12 @@ namespace SnotraApiDotNet.Dominio.Entidades
         }
 
         
-        [MaxLength(50)]
-        [Column("Caminho", TypeName = "varchar(50)")]
+        [MaxLength(260)]
+        [Column(TypeName = "varchar")]
         public string Caminho {get; set;}
 
         
+        [Column(TypeName = "nvarchar(MAX)")]
         public string Texto {get; set;}
 
 

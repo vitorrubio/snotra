@@ -47,8 +47,7 @@ namespace Dados.Migrations
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(2048)
-                        .HasColumnType("varchar(2048)")
-                        .HasColumnName("Url");
+                        .HasColumnType("varchar");
 
                     b.HasKey("Id");
 
@@ -66,16 +65,29 @@ namespace Dados.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Comentarios")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(MAX)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar");
+
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar");
+
+                    b.Property<string>("Obs")
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Nome")
                         .IsUnique();
 
-                    b.ToTable("Listas");
+                    b.ToTable("Lista");
                 });
 
             modelBuilder.Entity("SnotraApiDotNet.Dominio.Entidades.Nota", b =>
@@ -88,13 +100,13 @@ namespace Dados.Migrations
 
                     b.Property<string>("Caminho")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("Caminho");
+                        .HasMaxLength(260)
+                        .HasColumnType("varchar");
 
                     b.Property<string>("Texto")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(MAX)");
 
                     b.HasKey("Id");
 

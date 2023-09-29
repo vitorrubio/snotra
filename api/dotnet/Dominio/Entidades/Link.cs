@@ -19,7 +19,7 @@ namespace SnotraApiDotNet.Dominio.Entidades
 
         
         [MaxLength(2048)]
-        [Column("Url", TypeName = "varchar(2048)")]        
+        [Column(TypeName = "varchar")]        
         public string Url {get; set;}
 
         [Key]
