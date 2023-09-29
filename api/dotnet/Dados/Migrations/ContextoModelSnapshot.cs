@@ -2,20 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SnotraApiDotNet.Dados;
 
 #nullable disable
 
-namespace SnotraApiDotNet.Migrations
+namespace Dados.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20230601010234_LinkNotaNxM")]
-    partial class LinkNotaNxM
+    partial class ContextoModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +21,7 @@ namespace SnotraApiDotNet.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LinkModeloNotaModelo", b =>
+            modelBuilder.Entity("LinkNota", b =>
                 {
                     b.Property<int>("NotasId")
                         .HasColumnType("int");
@@ -36,10 +33,10 @@ namespace SnotraApiDotNet.Migrations
 
                     b.HasIndex("UrlsId");
 
-                    b.ToTable("LinkModeloNotaModelo");
+                    b.ToTable("LinkNota");
                 });
 
-            modelBuilder.Entity("SnotraApiDotNet.Dados.Modelo.LinkModelo", b =>
+            modelBuilder.Entity("SnotraApiDotNet.Dominio.Entidades.Link", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,10 +52,13 @@ namespace SnotraApiDotNet.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Url")
+                        .IsUnique();
+
                     b.ToTable("Link");
                 });
 
-            modelBuilder.Entity("SnotraApiDotNet.Dados.Modelo.NotaModelo", b =>
+            modelBuilder.Entity("SnotraApiDotNet.Dominio.Entidades.Nota", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -81,15 +81,15 @@ namespace SnotraApiDotNet.Migrations
                     b.ToTable("Notas");
                 });
 
-            modelBuilder.Entity("LinkModeloNotaModelo", b =>
+            modelBuilder.Entity("LinkNota", b =>
                 {
-                    b.HasOne("SnotraApiDotNet.Dados.Modelo.NotaModelo", null)
+                    b.HasOne("SnotraApiDotNet.Dominio.Entidades.Nota", null)
                         .WithMany()
                         .HasForeignKey("NotasId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SnotraApiDotNet.Dados.Modelo.LinkModelo", null)
+                    b.HasOne("SnotraApiDotNet.Dominio.Entidades.Link", null)
                         .WithMany()
                         .HasForeignKey("UrlsId")
                         .OnDelete(DeleteBehavior.Cascade)
