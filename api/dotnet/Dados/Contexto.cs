@@ -9,5 +9,7 @@ namespace SnotraApiDotNet.Dados
 
         public DbSet<Nota> Notas => Set<Nota>();
         public DbSet<Link> Links => Set<Link>();
+
+        public DbSet<Lista> Listas => Set<Lista>();
     }
 }
