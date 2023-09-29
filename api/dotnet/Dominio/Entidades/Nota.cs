@@ -7,7 +7,7 @@ using SnotraApiDotNet.Dominio.Dto;
 
 namespace SnotraApiDotNet.Dominio.Entidades
 {
-    [Table("Notas")]
+    [Table("Nota")]
     public class Nota
     {
 
